@@ -62,7 +62,7 @@ class Organization {
         TaskElevent emp3 = new TaskElevent("Diana", 4);
         TaskElevent emp4 = new TaskElevent("salim", 55);
 
-        // Build hierarchy
+        // Build hierarchy 
         manager.addSubordinate(emp1);
         manager.addSubordinate(emp2);
         emp2.addSubordinate(emp3);
@@ -74,4 +74,5 @@ class Organization {
     }
 
 }
+
 
