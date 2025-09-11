@@ -1,19 +1,18 @@
 import java.util.List;
-import java.util.Stack;
 import java.util.ArrayList;
 
-class Employee {
+class TaskElevent {
     private String name;
     private double salary;
-    private List<Employee> subordinates;
+    private List<TaskElevent> subordinates;
 
-    public Employee(String name, double salary) {
+    public TaskElevent(String name, double salary) {
         this.name = name;
         this.salary = salary;
         this.subordinates = new ArrayList<>();
     }
 
-    public void addSubordinate(Employee e) {
+    public void addSubordinate(TaskElevent e) {
         subordinates.add(e);
     }
 
@@ -21,7 +20,7 @@ class Employee {
         return salary;
     }
 
-    public List<Employee> getSubordinates() {
+    public List<TaskElevent> getSubordinates() {
         return subordinates;
     }
 
@@ -31,28 +30,28 @@ class Employee {
 }
 
 class Organization {
-
     /**
-     * TO-DO: Convert this iterative method into a recursive one.
-     \*
-     * This method calculates the total salary of a manager and all their subordinates.
-     * The current implementation uses a Stack to perform a depth-first traversal of the hierarchy.
-     \*
+     * Calculates the total salary of a manager and all their subordinates recursively.
+     *
+     * Base case: If an employee has no subordinates, return only their salary.
+     * Recursive case: Return the employee's salary plus the sum of total salaries
+     * of all their subordinates.
+     *
      * @param manager The root employee of the hierarchy to sum up.
-     * @return The total salary.
+     * @return The total salary of the manager and all subordinates.
      */
-    public double calculateTotalSalary(Employee manager) {
-        double totalSalary = 0.0;
-        Stack<Employee> stack = new Stack<>();
-        stack.push(manager);
-
-        while (!stack.isEmpty()) {
-            Employee current = stack.pop();
-            totalSalary += current.getSalary();
-            for (Employee subordinate : current.getSubordinates()) {
-                stack.push(subordinate);
-            }
-        }
-        return totalSalary;
+    public double calculateTotalSalary(TaskElevent manager) {
+        return manager.getSalary() + calculateSubordinatesTotalSalary(manager.getSubordinates(), 0);
     }
+
+
+    private double calculateSubordinatesTotalSalary(List<TaskElevent> subordinates, int index) {
+        if (index >= subordinates.size()) {
+            return 0.0;
+        }
+
+        return calculateTotalSalary(subordinates.get(index)) +
+                calculateSubordinatesTotalSalary(subordinates, index + 1);
+    }
+
 }
