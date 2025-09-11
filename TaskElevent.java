@@ -54,4 +54,24 @@ class Organization {
                 calculateSubordinatesTotalSalary(subordinates, index + 1);
     }
 
+    public static void main(String[] args) {
+        // Create employees
+        TaskElevent manager = new TaskElevent("Alice", 100);
+        TaskElevent emp1 = new TaskElevent("Bob", 5);
+        TaskElevent emp2 = new TaskElevent("Charlie", 0);
+        TaskElevent emp3 = new TaskElevent("Diana", 4);
+        TaskElevent emp4 = new TaskElevent("salim", 55);
+
+        // Build hierarchy
+        manager.addSubordinate(emp1);
+        manager.addSubordinate(emp2);
+        emp2.addSubordinate(emp3);
+        emp3.addSubordinate(emp4);
+        // Calculate total salary
+        Organization org = new Organization();
+        double total = org.calculateTotalSalary(manager);
+        System.out.println("Total salary for Alice and her team: " + total);
+    }
+
 }
+
