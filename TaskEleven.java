@@ -1,7 +1,7 @@
 import java.util.List;
 import java.util.ArrayList;
 
-class TaskElevent {
+class TaskEleven {
     private String name;
     private double salary;
     private List<TaskElevent> subordinates;
@@ -74,5 +74,6 @@ class Organization {
     }
 
 }
+
 
 
