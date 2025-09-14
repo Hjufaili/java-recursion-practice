@@ -4,15 +4,15 @@ import java.util.ArrayList;
 class TaskEleven {
     private String name;
     private double salary;
-    private List<TaskElevent> subordinates;
+    private List<TaskEleven> subordinates;
 
-    public TaskElevent(String name, double salary) {
+    public TaskEleven(String name, double salary) {
         this.name = name;
         this.salary = salary;
         this.subordinates = new ArrayList<>();
     }
 
-    public void addSubordinate(TaskElevent e) {
+    public void addSubordinate(TaskEleven e) {
         subordinates.add(e);
     }
 
@@ -20,7 +20,7 @@ class TaskEleven {
         return salary;
     }
 
-    public List<TaskElevent> getSubordinates() {
+    public List<TaskEleven> getSubordinates() {
         return subordinates;
     }
 
@@ -40,12 +40,12 @@ class Organization {
      * @param manager The root employee of the hierarchy to sum up.
      * @return The total salary of the manager and all subordinates.
      */
-    public double calculateTotalSalary(TaskElevent manager) {
+    public double calculateTotalSalary(TaskEleven manager) {
         return manager.getSalary() + calculateSubordinatesTotalSalary(manager.getSubordinates(), 0);
     }
 
 
-    private double calculateSubordinatesTotalSalary(List<TaskElevent> subordinates, int index) {
+    private double calculateSubordinatesTotalSalary(List<TaskEleven> subordinates, int index) {
         if (index >= subordinates.size()) {
             return 0.0;
         }
@@ -56,11 +56,11 @@ class Organization {
 
     public static void main(String[] args) {
         // Create employees
-        TaskElevent manager = new TaskElevent("Alice", 100);
-        TaskElevent emp1 = new TaskElevent("Bob", 5);
-        TaskElevent emp2 = new TaskElevent("Charlie", 0);
-        TaskElevent emp3 = new TaskElevent("Diana", 4);
-        TaskElevent emp4 = new TaskElevent("salim", 55);
+        TaskEleven manager = new TaskEleven("Alice", 100);
+        TaskEleven emp1 = new TaskEleven("Bob", 5);
+        TaskEleven emp2 = new TaskEleven("Charlie", 0);
+        TaskEleven emp3 = new TaskEleven("Diana", 4);
+        TaskEleven emp4 = new TaskEleven("salim", 55);
 
         // Build hierarchy 
         manager.addSubordinate(emp1);
@@ -74,6 +74,7 @@ class Organization {
     }
 
 }
+
 
 
 
